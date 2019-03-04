@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ZZZZZZZZZZZZZ" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cdba5aa3-9a52-43d6-aec1-62a59f75a9f7">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="847"/>
+	<queryString>
+		<![CDATA[SELECT MODULO.p_modulo, GRUPO.p_grupo, MODULO.nombre AS modulo, ALUMNO.nombre AS nombre_alumno, ALUMNO.apellidos, ALUMNO.dni, GRUPO.nombre AS grupo
+FROM MODULO
+INNER JOIN GRUPO ON MODULO.a_grupo = GRUPO.p_grupo
+INNER JOIN ALUMNO ON GRUPO.p_grupo = ALUMNO.a_grupo
+ORDER BY MODULO.nombre, GRUPO.p_grupo;]]>
+	</queryString>
+	<field name="p_modulo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="p_grupo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modulo" class="java.lang.String"/>
+	<field name="nombre_alumno" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grupo" class="java.lang.String"/>
+	<variable name="NUM_ALUM_GRUPO" class="java.lang.Double" incrementType="Group" incrementGroup="Grupo grupos" calculation="Sum">
+		<variableExpression><![CDATA[$V{DNI_GRUPO}]]></variableExpression>
+	</variable>
+	<variable name="NUM_ALUM_TODOS_MODULOS" class="java.lang.Double" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{modulo}]]></variableExpression>
+	</variable>
+	<variable name="MEDIA_ALUM_POR_MODULO" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{NUM_ALUM_GRUPO}/$V{NUM_ALUM_TODOS_MODULOS}]]></variableExpression>
+	</variable>
+	<variable name="DNI_GRUPO" class="java.lang.Double" resetType="Group" resetGroup="Grupo grupos" calculation="Count">
+		<variableExpression><![CDATA[$F{dni}]]></variableExpression>
+	</variable>
+	<variable name="DNI_MODULO" class="java.lang.Double" resetType="Group" resetGroup="Grupo modulos" calculation="Count">
+		<variableExpression><![CDATA[$F{dni}]]></variableExpression>
+	</variable>
+	<group name="Grupo modulos">
+		<groupExpression><![CDATA[$F{modulo}]]></groupExpression>
+		<groupHeader>
+			<band height="57">
+				<textField>
+					<reportElement x="135" y="17" width="100" height="20" uuid="3dd6eabf-67d0-415b-896d-ff14b07bc1ad"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{modulo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="20" y="17" width="100" height="20" uuid="58ca1a95-44b5-419b-9ef3-30a0dc2df527"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MODULO:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="96">
+				<textField>
+					<reportElement x="361" y="16" width="100" height="20" uuid="a1c47cb1-363b-41be-8114-54344cb5508d"/>
+					<textFieldExpression><![CDATA[$V{DNI_MODULO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="120" y="16" width="224" height="20" uuid="b8eab4ab-075e-4559-866c-06a24ec4643a"/>
+					<text><![CDATA[NUM. ALUMNOS EN TODOS LOS MÓDULOS:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="361" y="57" width="100" height="20" forecolor="#006666" uuid="ca889122-5fec-4faf-a3f6-c37512bdd69d"/>
+					<textFieldExpression><![CDATA[($V{DNI_GRUPO}>=4)?"Grupo numeroso":"Grupo no numeroso"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="344" y="77" width="105" height="1" forecolor="#006666" uuid="01b6ea4f-d412-4f1d-9e19-8dbd05640c1a"/>
+				</line>
+				<line>
+					<reportElement x="344" y="46" width="105" height="1" forecolor="#006666" uuid="4b5a5161-363d-455c-93cd-dbbcd1cf0c66"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Grupo grupos">
+		<groupExpression><![CDATA[$F{grupo}]]></groupExpression>
+		<groupHeader>
+			<band height="99">
+				<textField>
+					<reportElement x="120" y="0" width="100" height="20" uuid="3b8d622f-55e8-46e5-9778-9d7c2c085968"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{grupo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="20" y="0" width="100" height="20" uuid="9748a94c-e96a-4792-9577-73e5bfc1f48c"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[GRUPO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="220" y="63" width="113" height="20" uuid="e22f5ff2-accf-40e6-a232-6f525773b516"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="63" width="180" height="20" uuid="ffd9f9b3-cc37-4279-87e7-c50991d08daa"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[APELLIDOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="386" y="63" width="100" height="20" uuid="dfe208e9-f58f-43b4-b425-c54763b3d47b"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[DNI]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement x="361" y="23" width="100" height="20" uuid="42293f08-2565-4852-a6e1-3f807a9d9363"/>
+					<textFieldExpression><![CDATA[$V{DNI_GRUPO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="184" y="23" width="160" height="20" uuid="f1be0090-db6d-4b01-9884-e5ab07549f19"/>
+					<text><![CDATA[TOTAL ALUMNOS POR GRUPO]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="102" y="25" width="328" height="31" forecolor="#006699" uuid="e4dd834d-c75a-47c7-aa24-915117ee32ee"/>
+				<textElement>
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[LISTA DE ALUMNOS EN CADA MÓDULO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="0" width="180" height="20" uuid="07b96192-c78b-40cb-8a7d-d8ef42573d27"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="113" height="20" uuid="db878ac7-8b49-49a3-b42d-1d4f1eaa4bb4"/>
+				<textFieldExpression><![CDATA[$F{nombre_alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="100" height="20" uuid="b90fbe22-7d9d-4358-8d0d-7812a5a8fd88"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="361" y="14" width="186" height="20" uuid="b4329843-4806-4e49-96cd-11d1302abd4a"/>
+				<textFieldExpression><![CDATA[$V{MEDIA_ALUM_POR_MODULO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="176" y="14" width="168" height="20" uuid="ee15eb71-f44b-4eb8-8604-e69369866dc3"/>
+				<text><![CDATA[MEDIA ALUMNOS POR MODULO:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

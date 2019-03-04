@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoFacturass" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7af2fc6-5cf5-43be-9512-5b3deb492792">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM ADDRESS ADD,DOCUMENT DOC,POSITIONS POSI,PRODUCT PRO WHERE ADD.ID=DOC.ADDRESSID AND DOC.ID=POSI.DOCUMENTID AND POSI.PRODUCTID=PRO.ID]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer"/>
+	<field name="FIRSTNAME" class="java.lang.String"/>
+	<field name="LASTNAME" class="java.lang.String"/>
+	<field name="STREET" class="java.lang.String"/>
+	<field name="CITY" class="java.lang.String"/>
+	<field name="ADDRESSID" class="java.lang.Integer"/>
+	<field name="TOTAL" class="java.lang.Double"/>
+	<field name="DOCUMENTID" class="java.lang.Integer"/>
+	<field name="POSITIONNO" class="java.lang.Integer"/>
+	<field name="PRODUCTID" class="java.lang.Integer"/>
+	<field name="QUANTITY" class="java.lang.Integer"/>
+	<field name="PRICE" class="java.lang.Double"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="COST" class="java.lang.Double"/>
+	<variable name="ID_1" class="java.lang.Integer" resetType="Group" resetGroup="Cliente"/>
+	<variable name="TOTAL_LINEA" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{QUANTITY}*$F{PRICE}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_MEDIA" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{TOTAL_PAGINA}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_PAGINA" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{TOTAL_LINEA}]]></variableExpression>
+	</variable>
+	<group name="Cliente">
+		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+		<groupHeader>
+			<band height="151">
+				<textField>
+					<reportElement x="432" y="43" width="100" height="20" uuid="a1b2d23e-8dc6-4060-a9da-07ac543541d3"/>
+					<textFieldExpression><![CDATA[$F{CITY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="38" y="43" width="100" height="20" uuid="2432f7cb-7570-4f7e-a7b2-1825f23c3bee"/>
+					<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="138" y="41" width="100" height="20" uuid="32e8f518-259a-4917-a529-3597ae520ca3"/>
+					<textFieldExpression><![CDATA[$F{FIRSTNAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="238" y="41" width="100" height="20" uuid="30406bdf-877b-47f9-b6b2-af0e42c53f4a"/>
+					<textFieldExpression><![CDATA[$F{LASTNAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="332" y="43" width="100" height="20" uuid="4da993cc-40b5-4661-9ce2-f2227f725f26"/>
+					<textFieldExpression><![CDATA[$F{STREET}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="38" y="21" width="100" height="20" uuid="40abdb85-cb15-4fc7-81b8-3b331692d735"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="242" y="21" width="100" height="20" uuid="bd48bb89-d2a5-4860-80ba-4066931d1ef7"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[APELLIDO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="138" y="21" width="100" height="20" uuid="eaab7d31-f375-4512-acee-cb38d26f5dd1"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="332" y="23" width="100" height="20" uuid="e3260d4e-d83c-4299-b964-4c236293eaac"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[CALLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="432" y="21" width="100" height="20" uuid="ff909bff-8071-457a-8003-17f56ee703dd"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[CIUDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="38" y="121" width="100" height="20" uuid="9550b26c-511b-4c40-9c51-a8533bb020be"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="142" y="121" width="100" height="20" uuid="fac9ce68-ffc3-479c-8676-c819ecbbc244"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[CANTIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="238" y="121" width="100" height="20" uuid="d657c563-7e04-43d3-8416-056751334c13"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[PRECIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="338" y="121" width="100" height="20" uuid="0ac721b4-669c-4149-b8b2-2b3c779d7fa0"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="38" y="81" width="185" height="20" uuid="730ffbec-b34d-45c9-a87b-0be8c6a24d1c"/>
+					<textElement>
+						<font size="14" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[DATOS FACTURA]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="268" y="18" width="221" height="20" uuid="3b1d0301-8aba-4348-ad09-1645af5ff845"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["TOTAL PAGINA: " + $V{TOTAL_PAGINA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="38" y="27" width="185" height="20" uuid="a85af9ff-2e90-435b-b68e-45f6f1899ca2"/>
+				<textElement>
+					<font size="14" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DATOS CLIENTE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="38" y="7" width="100" height="20" uuid="a578520d-2bf2-46f8-9ad2-200429472171"/>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="7" width="100" height="20" uuid="4be43b67-3952-47fc-9935-d29637bc88ce"/>
+				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="7" width="100" height="20" uuid="1cbd77fa-5297-447b-92ea-b2b470f225e5"/>
+				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="342" y="7" width="100" height="20" uuid="9c14648d-765d-433f-8d00-432b55cd2a44"/>
+				<textFieldExpression><![CDATA[$V{TOTAL_LINEA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="274" y="0" width="207" height="20" forecolor="#CC0033" uuid="f50aede3-f4ab-43f6-ad0e-61b7f5e47c02"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["MEDIA: " + $V{TOTAL_MEDIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

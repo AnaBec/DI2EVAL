@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MySQL_Ej5" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="15990ade-0422-4b09-ad87-b644b11414d3">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="519"/>
+	<property name="ireport.y" value="255"/>
+	<queryString>
+		<![CDATA[select p_aula, capacidad, situacion from aula;]]>
+	</queryString>
+	<field name="p_aula" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="capacidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="situacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Media" class="java.math.BigDecimal" calculation="Average">
+		<variableExpression><![CDATA[$F{capacidad}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="108" y="23" width="314" height="20" uuid="5e7fc090-e3c5-4880-b72b-ceaf768c6a4c"/>
+				<textElement>
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO AULAS Y MEDIA DE SU CAPACIDAD]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="20" uuid="94820b70-da3a-482f-8b41-bcb67a1e90dc"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SITUACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="20" uuid="a078281f-337e-4924-ad92-3497965a2f34"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CAPACIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="20" uuid="4d68e8f6-dbed-4936-9fa7-242c77babe64"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[AULA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="370" y="0" width="185" height="20" uuid="fae968c3-8e64-4337-9192-a2b465e46a24"/>
+				<textFieldExpression><![CDATA[$F{situacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="20" uuid="33295850-bb26-40aa-8eb6-163b3b3ffb69"/>
+				<textFieldExpression><![CDATA[$F{capacidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="185" height="20" uuid="893ac303-b35f-4d74-8ecc-be526de32e48"/>
+				<textFieldExpression><![CDATA[$F{p_aula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="380" y="11" width="100" height="20" forecolor="#006666" uuid="16d62cfc-70de-4d2d-a983-0f35c9e13ae8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["MEDIA: "+$V{Media}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="355" y="0" width="113" height="1" uuid="b8acd815-6657-47bf-84f7-288ec0b9741e"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

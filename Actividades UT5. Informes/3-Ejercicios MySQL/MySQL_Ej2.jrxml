@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MySQL_Ej2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6716b5f2-137c-41a6-9673-8bceafda5c3c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT M.NOMBRE AS "NOMBRE MODULO", P.NOMBRE AS "NOMBRE PROFESOR", G.NOMBRE AS "NOMBRE GRUPO" FROM MODULO M, PROFESOR P, GRUPO G  WHERE G.P_GRUPO = M.A_GRUPO AND M.A_PROFESOR = P.P_PROFESOR;]]>
+	</queryString>
+	<field name="NOMBRE MODULO" class="java.lang.String"/>
+	<field name="NOMBRE PROFESOR" class="java.lang.String"/>
+	<field name="NOMBRE GRUPO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="32" width="570" height="21" uuid="26bc039d-f9ab-4a1d-a85d-708352f346bf"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[2- Lista de módulos, + nombre pforesor que lo imparte, y el nombre del grupo en el que se imparte]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="58" y="2" width="100" height="20" uuid="2d4161ed-02d6-402a-839b-5fdf1888e3e8"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE MODULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="2" width="100" height="20" uuid="88ff4ebf-a3b2-4a80-9d93-53f1837224e0"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE PROFESOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="2" width="100" height="20" uuid="ff44770d-7acd-4704-8e33-5912b1a4fa35"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE GRUPO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="58" y="8" width="100" height="20" uuid="37c37222-bd66-483d-be9e-435988c16cad"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE MODULO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="8" width="100" height="20" uuid="6a8b044f-8575-4475-9162-e52d190c9773"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE PROFESOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="373" y="8" width="100" height="20" uuid="a5938533-924b-43a9-af29-f8a0298d4446"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE GRUPO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
