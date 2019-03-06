@@ -1,0 +1,13 @@
+﻿<Window x:Class="Avituallamientos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="imagen\carrera.jpeg"/>
+        </Grid.Background>
+        <Button x:Name="ButtonProductos" Content="GESTION PRODUCTOS" HorizontalAlignment="Left" Margin="108,109,0,0" VerticalAlignment="Top" Width="286" Click="ButtonProductos_Click" Background="#FF0A0A0A" Foreground="#FFF0ECEC"/>
+        <Button x:Name="ButtonAvitu" Content="GESTION AVITUALLAMIENTOS" HorizontalAlignment="Left" Margin="108,180,0,0" VerticalAlignment="Top" Width="286" Click="ButtonAvitu_Click" Background="#FF010101" Foreground="#FFF9FBFC"/>
+
+    </Grid>
+</Window>
